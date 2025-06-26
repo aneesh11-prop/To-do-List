@@ -1,80 +1,167 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 60px;
-  min-height: 100vh;
-}
-
-.todo-container {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.input-section {
-  display: flex;
-  gap: 10px;
-}
-
-input[type="text"] {
-  flex: 1;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #218838;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 20px;
-}
-
-li {
-  background-color: #f1f1f1;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  background: 
+    linear-gradient(rgba(255,255,255,0.7), rgba(200,220,255,0.7)),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-li.completed {
-  text-decoration: line-through;
-  color: gray;
+.container {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 32px 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  min-width: 350px;
+  max-width: 90vw;
+  backdrop-filter: blur(8px);
 }
 
-.delete-btn {
-  background-color: red;
-  color: white;
+h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.input-group input,
+.input-group select,
+.input-group button {
+  flex: 1 1 auto;
+  min-width: 120px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d0d0d0;
+  font-size: 1em;
+  outline: none;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #2196f3;
+}
+
+.blue-btn {
+  background-color: #2196f3;
+  color: #fff;
   border: none;
-  padding: 5px 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.blue-btn:hover {
+  background-color: #1769aa;
+}
+
+.edit-btn {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  margin-right: 6px;
+  transition: background 0.2s;
+}
+.edit-btn:hover {
+  background-color: #c66900;
+}
+
+.danger-btn {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+.danger-btn:hover {
+  background: #b71c1c;
+}
+
+.suggestion-box {
+  margin: 18px 0 10px 0;
+  padding: 12px 16px;
+  background: rgba(240, 248, 255, 0.85);
+  border-left: 4px solid #4f8cff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+#newSuggestionBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-left: 8px;
+}
+
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: flex-start;
+}
+
+#taskList li {
+  background: rgba(255,255,255,0.85);
+  margin: 0;
+  padding: 18px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: box-shadow 0.2s;
+  animation: fadeIn 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-width: 210px;
+  max-width: 220px;
+  min-height: 120px;
+  word-break: break-word;
+}
+
+#taskList li.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 600px) {
+  .container {
+    min-width: unset;
+    width: 98vw;
+    padding: 12px 4vw;
+  }
+  .input-group input,
+  .input-group select,
+  .input-group button {
+    min-width: 80px;
+  }
 }
